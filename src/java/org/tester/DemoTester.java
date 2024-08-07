@@ -21,6 +21,8 @@ import com.microsoft.playwright.options.LoadState;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
+import java.nio.file.Paths;
+
 public class DemoTester{
     public static void main(String[] args){
 
@@ -110,10 +112,8 @@ public class DemoTester{
             for (int i = 0; i < paths.length - 1; i++){
                 File folderPath = new File(paths[i]);
                 String[] files = folderPath.list();
-                for (int k = 0; k < 10;k++){
-                    System.out.println(files[k]);
-                }
-
+                String currentPath = Paths.get("").toAbsolutePath().toString();
+        System.out.println("Aktueller Pfad: " + currentPath);
                 if (files == null){
                     continue;
                 }
@@ -147,12 +147,11 @@ public class DemoTester{
                         ms = Integer.parseInt(args[1]);
                     } else {
                         ms = 10000; 
-                    }
+                    }   
 
                     System.out.println("Waiting " + ms + " ms for site to load...");
                     Thread.sleep(ms);
 
-                    
                     if (args[0].trim().equals("takeScreenshots")){
                         System.out.println("Taking Screenshot...");
                         page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get("./Screenshots/screenshot_" + name + ".png")));
