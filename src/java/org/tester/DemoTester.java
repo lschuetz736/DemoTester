@@ -208,7 +208,7 @@ public class DemoTester{
                             System.out.println("****************************************************");
                             testSuccessfull = false;
                         }
-                        
+
                         dataWriter.write("Demo: " + name + " Status: " + status + "\n");
                         dataWriter.flush();
                     } else {
@@ -247,13 +247,13 @@ public class DemoTester{
 
                 }
             }
-            dataWriter.close();
-
+            
             if (testSuccessfull = true){
                 dataWriter.write("*****Test was successfull*****");
             } else {
                 dataWriter.write("*****Test was not successfull*****");
             }
+            dataWriter.close();
         } catch (IOException e){
             e.printStackTrace();
         } catch (Exception e){
