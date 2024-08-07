@@ -110,10 +110,10 @@ public class DemoTester{
             for (int i = 0; i < paths.length - 1; i++){
                 File folderPath = new File(paths[i]);
                 String[] files = folderPath.list();
-                System.out.println("HELLOOOOOOOOOOOOOOOOOOOOOOOOOO");
                 if (files == null){
                     continue;
                 }
+                System.out.println("HELLOOOOOOOOOOOOOOOOOOOOOOOOOO");
 
                 for (int j = 0; j < files.length - 1; j++){
                     
