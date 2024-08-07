@@ -31,7 +31,7 @@ public class DemoTester{
 
         try (Playwright playwright = Playwright.create()) {
             // Replace this path by the path of your project, click on run, sit back, watch and let the magic happen
-            String projectDirectory = "C:/eclipse-workspace/DemosTest";
+            String projectDirectory = "C:/actions-runner/_work/webforj-docs-samples-test/webforj-docs-samples-test";
 
             // Replace these paths too if needed
             String demosPath = projectDirectory + "/src/main/java";
