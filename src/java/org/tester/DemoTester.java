@@ -33,7 +33,7 @@ public class DemoTester{
 
         try (Playwright playwright = Playwright.create()) {
             // Replace this path by the path of your project, click on run, sit back, watch and let the magic happen
-            String projectDirectory = "C:/actions-runner/_work/webforj-docs-samples-test/webforj-docs-samples-test";
+            String projectDirectory = "D:\\a\\webforj-docs-samples-test\\webforj-docs-samples-test";
 
             // Replace these paths too if needed
             String demosPath = projectDirectory + "/src/main/java";
@@ -112,8 +112,7 @@ public class DemoTester{
             for (int i = 0; i < paths.length - 1; i++){
                 File folderPath = new File(paths[i]);
                 String[] files = folderPath.list();
-                String currentPath = Paths.get("").toAbsolutePath().toString();
-        System.out.println("Aktueller Pfad: " + currentPath);
+                
                 if (files == null){
                     continue;
                 }
