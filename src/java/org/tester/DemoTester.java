@@ -20,9 +20,6 @@ import com.microsoft.playwright.options.LoadState;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-
 public class DemoTester{
     public static void main(String[] args){
 
@@ -160,7 +157,7 @@ public class DemoTester{
                     } else if(args[0].trim().equals("compareScreenshots")){
                         System.out.println("Comparing screenshots...");
                         byte[] nowState = page.screenshot(new Page.ScreenshotOptions());
-                        byte[] shouldState = Files.readAllBytes(Paths.get("./screenshots/screenshot_" + name + ".png"));
+                        byte[] shouldState = Files.readAllBytes(Paths.get("./Screenshots/screenshot_" + name + ".png"));
 
                         boolean equals = java.util.Arrays.equals(nowState, shouldState);
 
@@ -189,7 +186,7 @@ public class DemoTester{
                         System.out.println("Unknown argument. Arguments: takeScreenshots, compareScreenshots");
                         return;
                     }
-                    
+                    /* 
                     browser = playwright.webkit().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(50));
                     context = browser.newContext();
                     page = context.newPage();
@@ -198,7 +195,7 @@ public class DemoTester{
                     Thread.sleep(1000);
                     
                     browser.close();
-
+                    */
                     /* Code of the AppRemover, you need to deploy this bbjprogram first
 
                      * server! = BBjAPI().getAdmin("admin", "admin123").getWebAppServer()
