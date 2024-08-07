@@ -208,7 +208,7 @@ public class DemoTester{
                             System.out.println("****************************************************");
                             testSuccessfull = false;
                         }
-                        Thread.sleep(1000000000);
+                        
                         dataWriter.write("Demo: " + name + " Status: " + status + "\n");
                         dataWriter.flush();
                     } else {
