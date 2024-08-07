@@ -106,7 +106,7 @@ public class DemoTester{
                 dataWriter.write("************************************\n");
                 dataWriter.flush();
             }
-
+            System.out.println(paths.length);
             for (int i = 0; i < paths.length - 1; i++){
                 File folderPath = new File(paths[i]);
                 String[] files = folderPath.list();
