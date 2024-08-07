@@ -33,7 +33,7 @@ public class DemoTester{
 
         try (Playwright playwright = Playwright.create()) {
             // Replace this path by the path of your project, click on run, sit back, watch and let the magic happen
-            String projectDirectory = "C:/eclipse-workspace/DemosTest";
+            String projectDirectory = ".";
 
             // Replace these paths too if needed
             String demosPath = projectDirectory + "/src/main/java";
@@ -87,6 +87,8 @@ public class DemoTester{
             
             String[] paths = {path1,path2,path3,path4,path5,path6,path7,path8,path9,path10,path11,path12,path13,path14,path15,path16,path17,path18,path19,path20,path21,path22,path23,path24,path25,path26,path27,path28,path29,path30,path31,path32,path33,path34,path35,path36,path37,path38,path39};
             
+            boolean testSuccessfull = true;
+
                 System.out.println("Creating data file...");
                 File file = new File("data.txt");
                 if (file.createNewFile()) {
@@ -178,6 +180,7 @@ public class DemoTester{
                             System.out.println("****************************************************");
                             System.out.println("***********************FAILED***********************");
                             System.out.println("****************************************************");
+                            testSuccessfull = false;
                         }
                         
                         dataWriter.write("Demo: " + name + " Status: " + status + "\n");
@@ -186,7 +189,7 @@ public class DemoTester{
                         System.out.println("Unknown argument. Arguments: takeScreenshots, compareScreenshots");
                         return;
                     }
-                     
+                    
                     browser = playwright.webkit().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(50));
                     context = browser.newContext();
                     page = context.newPage();
@@ -219,6 +222,12 @@ public class DemoTester{
                 }
             }
             dataWriter.close();
+
+            if (testSuccessfull = true){
+                dataWriter.write("*****Test was successfull*****");
+            } else {
+                dataWriter.write("*****Test was not successfull*****");
+            }
         } catch (IOException e){
             e.printStackTrace();
         } catch (Exception e){
