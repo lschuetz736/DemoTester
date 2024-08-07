@@ -9,6 +9,7 @@ import java.net.URI;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -30,7 +31,7 @@ public class DemoTester{
 
         try (Playwright playwright = Playwright.create()) {
             // Replace this path by the path of your project, click on run, sit back, watch and let the magic happen
-            String projectDirectory = ".";
+            String projectDirectory = "C:/eclipse-workspace/DemosTest";
 
             // Replace these paths too if needed
             String demosPath = projectDirectory + "/src/main/java";
@@ -151,19 +152,47 @@ public class DemoTester{
                     
                     if (args[0].trim().equals("takeScreenshots")){
                         System.out.println("Taking Screenshot...");
-                        page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get("./screenshots/screenshot_" + name + ".png")));
+                        page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get("./Screenshots/screenshot_" + name + ".png")));
                         System.out.println("Screenshot taken");
                         browser.close();
                     } else if(args[0].trim().equals("compareScreenshots")){
-                        System.out.println("Comparing screenshots...");
-                        byte[] nowState = page.screenshot(new Page.ScreenshotOptions());
+                        System.out.println("Comparing screenshots for demo " + name + "...");
+                        // byte[] nowState = page.screenshot(new Page.ScreenshotOptions());
+                        page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get("./tmpScreenshots/screenshot_" + name + ".png")));
+                        byte[] nowState = Files.readAllBytes(Paths.get("./tmpScreenshots/screenshot_" + name + ".png"));
                         byte[] shouldState = Files.readAllBytes(Paths.get("./Screenshots/screenshot_" + name + ".png"));
+
+                        StringBuilder sb = new StringBuilder();
+                        for (byte b : nowState) {
+                            sb.append(String.format("%02X", b));
+                        }
+                        String byteString = sb.toString();
+                        
+                        sb = new StringBuilder();
+                        for (byte b : shouldState) {
+                            sb.append(String.format("%02X", b));
+                        }
+                        String byteString2 = sb.toString();
+
+                        boolean equals1 = false;
+                        boolean equals2 = false;
+
+                        if (byteString2.contains(byteString)){
+                            equals1 = true;
+                        }
+
+                        if (byteString.contains(byteString2)){
+                            equals2 = true;
+                        }
+
+                        // The lines above are not the most beautiful code i know but i couldnt get it to work otherwise (yes tried other methods like Array.equals, String comparison doesnt fire either) 
+                        browser.close();
 
                         boolean equals = java.util.Arrays.equals(nowState, shouldState);
 
                         String status = "Failed";
 
-                        if (equals = true){
+                        if (equals1 == true && equals2 == true){
                             status = "Success";
                         } else {
                             status = "Failed";
@@ -179,7 +208,7 @@ public class DemoTester{
                             System.out.println("****************************************************");
                             testSuccessfull = false;
                         }
-                        
+                        Thread.sleep(1000000000);
                         dataWriter.write("Demo: " + name + " Status: " + status + "\n");
                         dataWriter.flush();
                     } else {
