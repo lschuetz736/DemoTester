@@ -1,0 +1,11 @@
+sessions! = BBjAPI().getSessionInfos()
+
+rem this program terminates all processes in the em so DemoTester can start more than 10 Porcesses to test the demos
+rem add an if statement that checks the string of session if you dont want every process to be terminated
+for i = 0 to sessions!.size() -1
+    session! = sessions!.getItem(i)
+    BBjAPI().killSession(session!,"admin","admin123")
+next i
+
+bye
+

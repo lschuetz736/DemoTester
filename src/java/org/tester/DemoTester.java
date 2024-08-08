@@ -32,16 +32,15 @@ public class DemoTester{
         }
 
         try (Playwright playwright = Playwright.create()) {
-            // Replace this path by the path of your project, click on run, sit back, watch and let the magic happen
+            // Replace this path by the path of your project which contains the demos
             String projectDirectory = "D:\\a\\webforj-docs-samples-test\\webforj-docs-samples-test";
 
             // Replace these paths too if needed
             String demosPath = projectDirectory + "/src/main/java";
             
-            // Replace this String by the content of the pomfile of your project and delete all contents between the classname and publishname tags so they look like the two Strings below
-            
             String name;
 
+            //Configure this address if needed
             String addressBegin = "http://localhost:8888/webapp/demos/";
 
             // Add every folder that contains demos here and don’t forget to also add the path to String[] paths
@@ -133,7 +132,7 @@ public class DemoTester{
                     
                     String address = addressBegin + name;
                     
-                    Browser browser = playwright.webkit().launch(new BrowserType.LaunchOptions().setHeadless(true).setSlowMo(50));
+                    Browser browser = playwright.webkit().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(50));
                     BrowserContext context = browser.newContext();
                     Page page = context.newPage();
                     page.navigate(address);
@@ -145,7 +144,7 @@ public class DemoTester{
                     if (args.length == 2){
                         ms = Integer.parseInt(args[1]);
                     } else {
-                        ms = 10000; 
+                        ms = 5000; 
                     }   
 
                     System.out.println("Waiting " + ms + " ms for site to load...");
@@ -216,34 +215,27 @@ public class DemoTester{
                         System.out.println("Unknown argument. Arguments: takeScreenshots, compareScreenshots");
                         return;
                     }
-                    /* 
+                    
                     browser = playwright.webkit().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(50));
                     context = browser.newContext();
                     page = context.newPage();
-                    page.navigate("http://desktop-fp4op26:8888/webapp/AppRemover");
+                    page.navigate("http://desktop-fp4op26:8888/webapp/ProcessRemover");
 
                     Thread.sleep(1000);
                     
                     browser.close();
-                    */
-                    /* Code of the AppRemover, you need to deploy this bbjprogram first
+                    
+                    /* Code of the ProcessRemover, you need to deploy this bbjprogram in the dwc first
 
-                     * server! = BBjAPI().getAdmin("admin", "admin123").getWebAppServer()
+                    sessions! = BBjAPI().getSessionInfos()
 
-                        apps! = server!.getAllAppNames()
+                    for i = 0 to sessions!.size() -1
+                        session! = sessions!.getItem(i)
+                        BBjAPI().killSession(session!,"admin","admin123")
+                    next i
 
-                        for i = 0 to apps!.size() - 1
-                            app! = apps!.getItem(i)
+                    bye
 
-                            if app!.contains("AppRemover") or app!.contains("demos") then
-
-                            else 
-                                app$ = app!
-                                server!.unpublish(app$)
-                            endif
-                        next i
-
-                        bye
                      */
 
                 }
