@@ -33,7 +33,7 @@ public class DemoTester{
 
         try (Playwright playwright = Playwright.create()) {
             // Replace this path by the path of your project which contains the demos
-            String projectDirectory = "";
+            String projectDirectory = "..";
 
             // Replace these paths too if needed
             String demosPath = projectDirectory + "/src/main/java";
