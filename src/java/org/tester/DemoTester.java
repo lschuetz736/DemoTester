@@ -215,12 +215,12 @@ public class DemoTester{
                         System.out.println("Unknown argument. Arguments: takeScreenshots, compareScreenshots");
                         return;
                     }
-                    
+                    /* 
                     browser = playwright.webkit().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(50));
                     context = browser.newContext();
                     page = context.newPage();
                     page.navigate("http://desktop-fp4op26:8888/webapp/ProcessRemover");
-
+                    
                     Thread.sleep(1000);
                     
                     browser.close();
