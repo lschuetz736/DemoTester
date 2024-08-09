@@ -44,6 +44,8 @@ public class DemoTester{
             String addressBegin = "http://localhost:8888/webapp/demos/";
 
             // Add every folder that contains demos here and don’t forget to also add the path to String[] paths
+
+            
             String path1 = demosPath + "/addondemos/tabledemos";
             String path2 = demosPath + "/componentdemos/buttondemos";
             String path3 = demosPath + "/componentdemos/checkboxdemos";
@@ -152,13 +154,11 @@ public class DemoTester{
 
                     if (args[0].trim().equals("takeScreenshots")){
                         System.out.println("Taking Screenshot...");
-                        page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get("./Screenshots/screenshot_" + name + ".png")));
+                        page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get("./demotester/Screenshots/screenshot_" + name + ".png")));
                         System.out.println("Screenshot taken");
                         browser.close();
                     } else if(args[0].trim().equals("compareScreenshots")){
                         System.out.println("Comparing screenshots for demo " + name + "...");
-                        String currentPath = Paths.get("").toAbsolutePath().toString();
-                        System.out.println("Aktueller Pfad: " + currentPath);
                         // byte[] nowState = page.screenshot(new Page.ScreenshotOptions());
                         page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get("./tmpScreenshots/screenshot_" + name + ".png")));
                         byte[] nowState = Files.readAllBytes(Paths.get("./tmpScreenshots/screenshot_" + name + ".png"));
