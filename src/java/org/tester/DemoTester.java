@@ -157,6 +157,8 @@ public class DemoTester{
                         browser.close();
                     } else if(args[0].trim().equals("compareScreenshots")){
                         System.out.println("Comparing screenshots for demo " + name + "...");
+                        String currentPath = Paths.get("").toAbsolutePath().toString();
+                        System.out.println("Aktueller Pfad: " + currentPath);
                         // byte[] nowState = page.screenshot(new Page.ScreenshotOptions());
                         page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get("./tmpScreenshots/screenshot_" + name + ".png")));
                         byte[] nowState = Files.readAllBytes(Paths.get("./tmpScreenshots/screenshot_" + name + ".png"));
