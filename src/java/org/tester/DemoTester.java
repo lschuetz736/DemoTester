@@ -44,7 +44,7 @@ public class DemoTester{
             String name;
 
             //Configure this address if needed
-            String addressBegin = "http://localhost:8888/webapp/demos/";
+            String addressBegin = "http://localhost:8888/webapp/controlsamples/";
 
             // Add every folder that contains demos here and don’t forget to also add the path to String[] paths
 
