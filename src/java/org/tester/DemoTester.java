@@ -33,7 +33,7 @@ public class DemoTester{
 
         try (Playwright playwright = Playwright.create()) {
             // Replace this path by the path of your project which contains the demos
-            String projectDirectory = "..";
+            String projectDirectory = "C:\\Projects\\webforj-docs-samples";
 
             // Replace these paths too if needed
             String demosPath = projectDirectory + "/src/main/java";
@@ -134,7 +134,7 @@ public class DemoTester{
                     
                     String address = addressBegin + name;
                     
-                    Browser browser = playwright.webkit().launch(new BrowserType.LaunchOptions().setHeadless(true).setSlowMo(50));
+                    Browser browser = playwright.webkit().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(50));
                     BrowserContext context = browser.newContext();
                     Page page = context.newPage();
                     page.navigate(address);
