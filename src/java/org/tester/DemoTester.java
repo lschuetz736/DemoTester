@@ -137,7 +137,7 @@ public class DemoTester{
                     
                     String address = addressBegin + name;
                     
-                    Browser browser = playwright.webkit().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(50));
+                    Browser browser = playwright.webkit().launch(new BrowserType.LaunchOptions().setHeadless(true).setSlowMo(50));
                     BrowserContext context = browser.newContext();
                     Page page = context.newPage();
                     page.navigate(address);
