@@ -6,6 +6,9 @@ import java.io.File;
 
 import java.awt.Desktop;
 import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -199,6 +202,19 @@ public class DemoTester{
                         } else {
                             status = "Failed";
                         }
+
+                        HttpClient client = HttpClient.newHttpClient();
+
+                        // Erstelle eine HttpRequest
+                        HttpRequest request = HttpRequest.newBuilder()
+                                .uri(URI.create(address))
+                                .build();
+                
+                        // Sende die Anfrage und erhalte die Antwort
+                        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+                
+                        // Gib die Antwort aus
+                        System.out.println("HTTPRESPONE:"+response.body());
 
                         if (status == "Success"){
                             System.out.println("****************************************************");
